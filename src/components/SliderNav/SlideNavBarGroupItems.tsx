@@ -1,11 +1,10 @@
 import React, { ReactElement, useState } from 'react';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 
-
-export interface ISlideNavBarGroupItemsProps {
+interface ISlideNavBarGroupItemsProps {
   itemName: string;
   options: string[];
-  icon: ReactElement
+  icon: ReactElement;
   onOptionClick: (option: string) => void;
 }
 
@@ -13,7 +12,7 @@ interface IToggleIconProps {
   isOpen: boolean;
 }
 
-const ToggleIcon : React.FC<IToggleIconProps> = ({isOpen}) => {
+const ToggleIcon: React.FC<IToggleIconProps> = ({ isOpen }) => {
   return isOpen ? <FaAngleUp /> : <FaAngleDown />;
 };
 
@@ -33,30 +32,27 @@ const SlideNavBarGroupItems: React.FC<ISlideNavBarGroupItemsProps> = ({ itemName
     <div className='relative'>
       <button
         className='px-[8px] py-2 bg-background-dark hover:bg-background-light w-full overflow-hidden flex rounded-md'
-        onClick={handleButtonClick}>
-        <div
-          className='text-white font-light flex flex-row w-full justify-between items-center overflow-hidden text-ellipsis whitespace-nowrap'>
+        onClick={handleButtonClick}
+      >
+        <div className='text-white font-light flex flex-row w-full justify-between items-center overflow-hidden text-ellipsis whitespace-nowrap'>
           <div className='flex flex-row'>
-            <div className='w-[20px]'>
-              {icon}
-            </div>
+            <div className='w-[20px]'>{icon}</div>
             <span className='pl-[8px]'>{itemName}</span>
           </div>
-          <ToggleIcon isOpen={isOpen}  />
+          <ToggleIcon isOpen={isOpen} />
         </div>
       </button>
-      {isOpen && (
-        <div className='absolute w-full bg-background-dark rounded-md'>
-          {options.map((option, index) => (
-            <button
-              key={index}
-              className='block px-[36px] py-2 text-left text-white w-full hover:bg-background-light rounded-md'
-              onClick={() => handleOptionClick(option)}>
-              {option}
-            </button>
-          ))}
-        </div>
-      )}
+      <div className={isOpen ? 'block' : 'hidden'}>
+        {options.map((option, index) => (
+          <button
+            key={index}
+            className='px-[36px] py-3 text-left text-white w-full hover:bg-background-light rounded-md'
+            onClick={() => handleOptionClick(option)}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

@@ -3,14 +3,14 @@ import SlideNavBarHeader, { ISlideNavBarHeaderProps } from './SlideNavBarHeader'
 
 
 interface ISlideNavBarProps {
-    header:ISlideNavBarHeaderProps;
+    header: ISlideNavBarHeaderProps;
     children: React.ReactNode,
 }
 
-const SlideNavBar: React.FunctionComponent<ISlideNavBarProps> = ({header, children}) => {
-    
+const SlideNavBar: React.FunctionComponent<ISlideNavBarProps> = ({ header, children }) => {
+
     return (
-        <div className='py-10 px-2 flex flex-col w-[200px] '>
+        <div className='py-10 px-2 flex flex-col w-[200px] space-y-5'>
             <SlideNavBarHeader logo={header.logo} name={header.name} />
             {children}
         </div>
